@@ -1,4 +1,4 @@
-use std::{collections::HashMap, ops::Index};
+use std::collections::HashMap;
 
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     // let v = ;
@@ -25,7 +25,7 @@ pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
-
+#[rustfmt::skip]
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
@@ -47,22 +47,14 @@ impl ListNode {
         }
         println!("");
     }
-    pub fn add_two_numbers(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
+    pub fn add_two_numbers(l1: Option<Box<ListNode>>,l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut curl: &ListNode = l1.as_ref().unwrap();
         let mut curr: &ListNode = l2.as_ref().unwrap();
         let default_node = Box::new(ListNode::new(0));
         // println!("[{:>3?}] [{:>3?}]", curl.val, curr.val);
         let a = curl.val + curr.val;
         let mut d = 0;
-        let mut c = if a >= 10 {
-            d = 1;
-            a % 10
-        } else {
-            a
-        };
+        let mut c = if a >= 10 { d = 1; a % 10 } else { a };
         let mut l3 = Some(Box::new(ListNode::new(c)));
         //println!("[{:>3?}]", a);
         while curl.next.is_some() || curr.next.is_some() {
@@ -70,12 +62,7 @@ impl ListNode {
             curl = curl.next.as_ref().unwrap_or(&default_node); //.next.as_ref().unwrap();
             curr = curr.next.as_ref().unwrap_or(&default_node); //.next.as_ref().unwrap();
             let mut b = curl.val + curr.val + d;
-            b = if b >= 10 {
-                d = 1;
-                b % 10
-            } else {
-                b
-            };
+            b = if b >= 10 { d = 1; b % 10 } else { b };
 
             l3.as_mut().unwrap().push(b);
         }
@@ -85,7 +72,7 @@ impl ListNode {
         l3
     }
 }
-
+#[rustfmt::skip]
 pub fn length_of_longest_substring(s: String) -> i32 {
     //------------------------------------------------------
     let mut counts: HashMap<String, usize> = HashMap::new();
