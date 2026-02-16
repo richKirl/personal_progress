@@ -54,15 +54,15 @@ impl ListNode {
         // println!("[{:>3?}] [{:>3?}]", curl.val, curr.val);
         let a = curl.val + curr.val;
         let mut d = 0;
-        let mut c = if a >= 10 { d = 1; a % 10 } else { a };
+        let c = if a >= 10 { d = 1; a % 10 } else { a };//1
         let mut l3 = Some(Box::new(ListNode::new(c)));
         //println!("[{:>3?}]", a);
         while curl.next.is_some() || curr.next.is_some() {
             // let prevc = c;
-            curl = curl.next.as_ref().unwrap_or(&default_node); //.next.as_ref().unwrap();
-            curr = curr.next.as_ref().unwrap_or(&default_node); //.next.as_ref().unwrap();
+            curl = curl.next.as_ref().unwrap_or(&default_node);
+            curr = curr.next.as_ref().unwrap_or(&default_node);
             let mut b = curl.val + curr.val + d;
-            b = if b >= 10 { d = 1; b % 10 } else { b };
+            b = if b >= 10 { d = 1; b % 10 } else { b };//1
 
             l3.as_mut().unwrap().push(b);
         }
@@ -85,7 +85,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
             counter = 0;
             counts.insert(win.clone(), win.len());
 
-            win.drain(..pp + 1);
+            win.drain(..pp + 1);//1
 
             counter += 1;
             win.push(c);
@@ -151,16 +151,16 @@ pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         let k3 = n1.len() / 2;
         let k1 = (k3 as f64 - 0.5) as usize;
         let k2 = (k3 as f64 + 0.5) as usize;
-        let mut st = if let Some(o1) = n1.get(k1) { *o1 } else { 0 };
-        let mut en = if let Some(o2) = n1.get(k2) { *o2 } else { 0 };
+        let st = if let Some(o1) = n1.get(k1) { *o1 } else { 0 };
+        let en = if let Some(o2) = n1.get(k2) { *o2 } else { 0 };
         p = (st as f64 + en as f64) / 2.0;
         println!("{} {} {} {} {} {}", n1.len(), k, k1, k2, st, en);
     } else {
         let k3 = n1.len() / 2;
         let k1 = (k3 as f64) as usize;
         let k2 = (k3 as f64) as usize;
-        let mut st = if let Some(o1) = n1.get(k1) { *o1 } else { 0 };
-        let mut en = if let Some(o2) = n1.get(k2) { *o2 } else { 0 };
+        let st = if let Some(o1) = n1.get(k1) { *o1 } else { 0 };
+        let en = if let Some(o2) = n1.get(k2) { *o2 } else { 0 };
         p = (st as f64 + en as f64) / 2.0;
         println!("{} {} {} {} {} {}", n1.len(), k, k1, k2, st, en);
     }
