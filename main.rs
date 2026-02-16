@@ -83,7 +83,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
         if win.contains(c) {
             let pp = if let Some(pos) = win.find(c) { pos } else { 0 };
             counter = 0;
-            counts.insert(win.clone(), win.len());
+            counts.insert(win.clone(), win.len());//1
 
             win.drain(..pp + 1);//1
 
@@ -95,7 +95,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
             win.push(c);
         }
     }
-    counts.insert(win.clone(), win.len());
+    counts.insert(win.clone(), win.len());//1
     let mut max = 0;
     for (_len, string) in counts {
         println!("'{}': {}", _len, string);
@@ -141,8 +141,8 @@ pub fn length_of_longest_substring(s: String) -> i32 {
 //     println!("result {}", p);
 // }
 pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    let mut n1 = nums1.clone();
-    n1.extend(nums2.clone());
+    let mut n1 = nums1.clone(); //1
+    n1.extend(nums2.clone()); //1
     let mut p: f64 = 0.0;
     n1.sort();
 
