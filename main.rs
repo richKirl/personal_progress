@@ -1,4 +1,8 @@
-use std::collections::HashMap;
+use std::{
+    collections::HashMap,
+    io::Read,
+    ops::{Index, Shl},
+};
 
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     // let v = ;
@@ -168,6 +172,85 @@ pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
     p
 }
+
+// let k = s1.len() % 2;
+// if k == 0 {
+//     let k3 = s1.len() / 2;
+//     let k1 = (k3 as f64 - 0.5) as usize;
+//     let k2 = (k3 as f64 + 0.5) as usize;
+//     // let st = if let Some(o1) = s1.as_bytes().get(k1) {
+//     //     *o1
+//     // } else {
+//     //     0
+//     // };
+//     // let en = if let Some(o2) = s1.as_bytes().get(k2) {
+//     //     *o2
+//     // } else {
+//     //     0
+//     // };
+//     // p = (st as f64 + en as f64) / 2.0;
+//     println!("1 {} {}", k1, k2);
+// } else {
+//     let k3 = s1.len() / 2;
+//     let k1 = (k3 as f64) as usize;
+//     let k2 = (k3 as f64) as usize;
+//     // let st = if let Some(o1) = s1.as_bytes().get(k1) {
+//     //     *o1
+//     // } else {
+//     //     0
+//     // };
+//     // let en = if let Some(o2) = s1.as_bytes().get(k2) {
+//     //     *o2
+//     // } else {
+//     //     0
+//     // };
+//     // p = (st as f64 + en as f64) / 2.0;
+//     println!("2 {} {}", k1, k2);
+// }
+
+pub fn longest_palindrome(s: String) -> String {
+    let mut counts: std::collections::HashMap<String, usize> = std::collections::HashMap::new();
+
+    let mut st = 0;
+    let mut en = s.len();
+    let mut st1 = 0;
+    let mut en1 = s.len();
+    for i2 in 0..s.len() {
+        for i1 in st1..en1 {
+            if st == en {
+                st += 1;
+                en = s.len();
+                st1 += 1;
+                en1 = s.len();
+                continue;
+            }
+
+            let s2 = s[st..en].chars();
+            let s3 = s2.clone().rev();
+            if s2.eq(s3) {
+                let strr = s[st..en].chars().as_str().to_string();
+                counts.insert(strr, s[st..en].len());
+            }
+            en -= 1;
+        }
+    }
+    let mut max = 0;
+    let mut strR = String::from("");
+    for (len, string) in counts {
+        if string > max {
+            max = string;
+            strR = len;
+        }
+    }
+    strR
+}
+pub fn reverse(x: i32) -> i32 {
+    // let x1 = x.shl(3);
+    let mut p = x;
+    p = p.swap_bytes();
+    println!("{}", p);
+    0
+}
 pub fn main() {
     //1
     // let v: Vec<i32> = vec![3, 2, 4];
@@ -197,5 +280,11 @@ pub fn main() {
     // 4
     // find_median_sorted_arrays(vec![1, 2], vec![2, 4, 2]);
     //5
-    //
+    let pp = longest_palindrome(String::from(
+        "zudfweormatjycujjirzjpyrmaxurectxrtqedmmgergwdvjmjtstdhcihacqnothgttgqfywcpgnuvwglvfiuxteopoyizgehkwuvvkqxbnufkcbodlhdmbqyghkojrgokpwdhtdrwmvdegwycecrgjvuexlguayzcammupgeskrvpthrmwqaqsdcgycdupykppiyhwzwcplivjnnvwhqkkxildtyjltklcokcrgqnnwzzeuqioyahqpuskkpbxhvzvqyhlegmoviogzwuiqahiouhnecjwysmtarjjdjqdrkljawzasriouuiqkcwwqsxifbndjmyprdozhwaoibpqrthpcjphgsfbeqrqqoqiqqdicvybzxhklehzzapbvcyleljawowluqgxxwlrymzojshlwkmzwpixgfjljkmwdtjeabgyrpbqyyykmoaqdambpkyyvukalbrzoyoufjqeftniddsfqnilxlplselqatdgjziphvrbokofvuerpsvqmzakbyzxtxvyanvjpfyvyiivqusfrsufjanmfibgrkwtiuoykiavpbqeyfsuteuxxjiyxvlvgmehycdvxdorpepmsinvmyzeqeiikajopqedyopirmhymozernxzaueljjrhcsofwyddkpnvcvzixdjknikyhzmstvbducjcoyoeoaqruuewclzqqqxzpgykrkygxnmlsrjudoaejxkipkgmcoqtxhelvsizgdwdyjwuumazxfstoaxeqqxoqezakdqjwpkrbldpcbbxexquqrznavcrprnydufsidakvrpuzgfisdxreldbqfizngtrilnbqboxwmwienlkmmiuifrvytukcqcpeqdwwucymgvyrektsnfijdcdoawbcwkkjkqwzffnuqituihjaklvthulmcjrhqcyzvekzqlxgddjoir",
+    ));
+    println!("{}", pp);
+    // 6
+    // 7
+    // reverse(12345);
 }
