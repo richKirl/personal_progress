@@ -244,6 +244,34 @@ pub fn longest_palindrome(s: String) -> String {
     }
     strR
 }
+
+pub fn convert(s: String, num_rows: i32) {
+    for i in 0..s.len() {
+        if let Some(p) = s
+            .chars()
+            .nth(i as usize * (num_rows as usize - 1 as usize) * 2 as usize)
+        {
+            println!("{}", p);
+        };
+    }
+    for i in 0..s.len() {
+        if let Some(p) = s
+            .chars()
+            .nth((i as usize * (num_rows as usize - 1 as usize) + 1) as usize)
+        {
+            println!("{}", p);
+        };
+    }
+    for i in 0..s.len() {
+        if let Some(p) = s
+            .chars()
+            .nth((i as usize * (num_rows as usize + 1) + 2) as usize)
+        {
+            println!("{}", p);
+        };
+    }
+}
+
 pub fn reverse(x: i32) -> i32 {
     // let x1 = x.shl(3);
     let mut p = x;
