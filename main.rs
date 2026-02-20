@@ -273,11 +273,37 @@ pub fn convert(s: String, num_rows: i32) {
 }
 
 pub fn reverse(x: i32) -> i32 {
-    // let x1 = x.shl(3);
-    let mut p = x;
-    p = p.swap_bytes();
-    println!("{}", p);
-    0
+    let p = x.to_string();
+    let mut p1 = String::from("");
+    let mut b = false;
+    for i in 0..p.len() {
+        if let Some(pp) = p.chars().nth(i) {
+            if pp != '-' && i == 0 {
+                if let Some(pp1) = p.chars().nth(0) {
+                    // p1.push(pp1);
+                    b = true;
+                    continue;
+                };
+            }
+            if pp == '-' && i == 0 {
+                p1.push(pp);
+            } else if pp != '-' && i != 0 {
+                if let Some(pp1) = p.chars().nth(p.len() - i) {
+                    p1.push(pp1);
+                };
+            }
+        };
+    }
+    if b == true {
+        if let Some(pp1) = p.chars().nth(0) {
+            // println!("{}", pp1);
+            p1.push(pp1);
+            // b = true;
+        };
+    }
+    let p2 = p1.parse::<i32>();
+    println!("{}", p2.clone().unwrap_or(0));
+    p2.clone().unwrap_or(0)
 }
 pub fn main() {
     //1
@@ -313,7 +339,7 @@ pub fn main() {
     //));
     //println!("{}", pp);
     // 6
-    convert(String::from("PAYPALISHIRING"), 3);
+    //convert(String::from("PAYPALISHIRING"), 3);
     // 7
-    // reverse(12345);
+    reverse(1534236469);
 }
