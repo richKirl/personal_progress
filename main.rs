@@ -305,6 +305,15 @@ pub fn reverse(x: i32) -> i32 {
     println!("{}", p2.clone().unwrap_or(0));
     p2.clone().unwrap_or(0)
 }
+
+pub fn is_palindrome(x: i32) -> bool {
+    let a = x.to_string();
+    let b = x.to_string();
+    let c = b.chars().rev().clone();
+    let d = a.chars();
+    if c.eq(d) { true } else { false }
+}
+
 pub fn main() {
     //1
     // let v: Vec<i32> = vec![3, 2, 4];
