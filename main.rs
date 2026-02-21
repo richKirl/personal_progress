@@ -314,6 +314,86 @@ pub fn is_palindrome(x: i32) -> bool {
     if c.eq(d) { true } else { false }
 }
 
+
+//2119
+pub fn is_same_after_reversals(num: i32) -> bool {
+    let p = num.to_string();
+    let mut p1 = String::from("");
+    let mut b = false;
+    let mut cn = 0;
+    let mut nn = 0;
+    let mut bn = false;
+    for i in 0..p.len() {
+        if let Some(pp) = p.chars().nth(i) {
+            if pp != '-' && i == 0 {
+                if let Some(pp1) = p.chars().nth(0) {
+                    // p1.push(pp1);
+                    b = true;
+                    continue;
+                };
+            }
+            if pp == '-' && i == 0 {
+                p1.push(pp);
+            } else if pp != '-' && i != 0 {
+                if let Some(pp1) = p.chars().nth(p.len() - i) {
+                    if p.len() == 1 && pp1 == '0' {
+                        p1.push(pp1);
+                    } else if p.len() > 1 && pp1 == '0' && bn == false {
+                        cn += 1;
+                    } else if p.len() > 1 && pp1 != '0' {
+                        nn += 1;
+                        p1.push(pp1);
+                        bn = true;
+                    } else if p.len() > 1 && bn == true {
+                        //nn+=1;
+                        p1.push(pp1);
+                        //bn=true;
+                    }
+                };
+            }
+        };
+    }
+    if b == true {
+        if let Some(pp1) = p.chars().nth(0) {
+            // println!("{}", pp1);
+            p1.push(pp1);
+            // b = true;
+        };
+    }
+    let p3 = p1;
+    let mut p2 = String::from("");
+    let mut b = false;
+    for i in 0..p3.len() {
+        if let Some(pp) = p3.chars().nth(i) {
+            if pp != '-' && i == 0 {
+                if let Some(pp1) = p3.chars().nth(0) {
+                    // p1.push(pp1);
+                    b = true;
+                    continue;
+                };
+            }
+            if pp == '-' && i == 0 {
+                p2.push(pp);
+            } else if pp != '-' && i != 0 {
+                if let Some(pp1) = p3.chars().nth(p3.len() - i) {
+                    p2.push(pp1);
+                };
+            }
+        };
+    }
+    if b == true {
+        if let Some(pp1) = p3.chars().nth(0) {
+            // println!("{}", pp1);
+            p2.push(pp1);
+            // b = true;
+        };
+    }
+    let p4 = p2.parse::<i32>();
+    println!("{}", p4.clone().unwrap_or(0));
+    let i2: i32 = p4.clone().unwrap_or(0);
+    i2.eq(&num)
+}
+
 pub fn main() {
     //1
     // let v: Vec<i32> = vec![3, 2, 4];
