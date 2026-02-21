@@ -314,6 +314,10 @@ pub fn is_palindrome(x: i32) -> bool {
     if c.eq(d) { true } else { false }
 }
 
+//190
+pub fn reverse_bits(n: i32) -> i32 {
+    n.reverse_bits()
+}
 
 //2119
 pub fn is_same_after_reversals(num: i32) -> bool {
