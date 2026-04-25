@@ -4,25 +4,20 @@ use std::{
     ops::{Index, Shl},
 };
 
-pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    // let v = ;
-    let mut nums1: Vec<i32> = Vec::new();
-    'outer: for i in 0..nums.len() {
-        for i1 in 0..nums.len() {
-            if let Some(n) = nums.get(i) {
-                if let Some(n1) = nums.get(i1) {
-                    println!("{} {} {} {}", i, i1, *n, *n1);
-                    if (*n + *n1) == target && i != i1 {
-                        println!("{} {} {} {}", i, i1, *n, *n1);
-                        nums1 = vec![i as i32, i1 as i32];
-                        break 'outer;
-                    }
-                };
-            };
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut temp_res:Vec<i32> = Vec::new();
+        for (i, n) in nums.iter().enumerate() {
+            for (i1, n1) in nums.iter().enumerate() {
+                //println!("{} {}",i,i1);
+                if (*n as i32 + *n1 as i32) == target && i!=i1 {
+                    temp_res.push(i as i32);
+                    temp_res.push(i1 as i32);          
+                    return temp_res;
+                }
+            }
         }
+        vec![]
     }
-    return nums1;
-}
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
