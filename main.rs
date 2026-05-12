@@ -266,7 +266,29 @@ pub fn longest_palindrome(s: String) -> String {
             else {return s;};
             
     }
-
+pub fn my_atoi(s: String) -> i32 {
+    let s1: Vec<_> = s.chars().collect();
+    let mut s2=String::from("");
+    // println!("{:?}",s1);
+    // let mut counter = 0;
+    if s1[0] >= '0' && s1[0] <= '9'||s1[0]==' ' {
+        //s1[0] >='!' && s1[0] < '0'||s1[0]>'9'&&s1[0]<='~'
+        for i in &s1 {
+            if *i==' '{continue;}
+            if *i >= '0' && *i <= '9'|| *i=='-' {
+                // println!("{}", *i);
+                s2.push(*i);
+                // counter += 1;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    let op = s2.parse::<i32>().unwrap_or(0);
+    // println!("{}",op);
+    op
+}
 pub fn reverse(x: i32) -> i32 {
     let p = x.to_string();
     let mut p1 = String::from("");
