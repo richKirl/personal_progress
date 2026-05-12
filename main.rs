@@ -4,6 +4,7 @@ use std::{
     ops::{Index, Shl},
 };
 
+
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let mut temp_res:Vec<i32> = Vec::new();
         for (i, n) in nums.iter().enumerate() {
@@ -240,32 +241,31 @@ pub fn longest_palindrome(s: String) -> String {
     strR
 }
 
-pub fn convert(s: String, num_rows: i32) {
-    for i in 0..s.len() {
-        if let Some(p) = s
-            .chars()
-            .nth(i as usize * (num_rows as usize - 1 as usize) * 2 as usize)
-        {
-            println!("{}", p);
-        };
+    pub fn convert(s: String, num_rows: i32) -> String {
+            let n:i32 = s.len() as i32;
+            let mut rr=String::from("");
+            if num_rows > 1 && s.len() > 1{
+            let chars: Vec<char> = s.chars().collect();
+            
+            let cycle:i32 = (num_rows - 1) * 2; // Для 3 строк это 4
+            
+            for r in 0..num_rows {
+                for i in (r..n).step_by(cycle as usize) {
+                    //print!("{}", chars[i as usize]); // Основной символ колонки
+                    rr.push(chars[i as usize]);
+                    // Если строка средняя, нужно добавить промежуточный символ
+                    let second_j = i + cycle - 2 * r;
+                    if r != 0 && r != num_rows - 1 && second_j < n {
+                        //print!("{}", chars[second_j as usize]);
+                        rr.push(chars[second_j as usize]);
+                    }
+                }
+            }
+            return rr;
+            }
+            else {return s;};
+            
     }
-    for i in 0..s.len() {
-        if let Some(p) = s
-            .chars()
-            .nth((i as usize * (num_rows as usize - 1 as usize) + 1) as usize)
-        {
-            println!("{}", p);
-        };
-    }
-    for i in 0..s.len() {
-        if let Some(p) = s
-            .chars()
-            .nth((i as usize * (num_rows as usize + 1) + 2) as usize)
-        {
-            println!("{}", p);
-        };
-    }
-}
 
 pub fn reverse(x: i32) -> i32 {
     let p = x.to_string();
